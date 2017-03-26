@@ -1,0 +1,214 @@
+@charset: "utf-8";
+
+/*************** 從這裡開始 ***************/
+*{
+	font-family: 微軟正黑體;
+	position: relative;
+}
+a{
+  color: #000;
+  text-decoration: none;
+}
+/* 清除浮動用 */
+.clearfix{
+  clear: both;
+  display: table;
+  height: 0;
+}
+.wrapper{
+  display: block;
+  height: 100vh;
+  /* animation 改 */
+  background-color: #313440;
+}
+.cardContainer{
+  /* 樣式 */
+  width: 280px;
+  height: 440px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
+  /* 定位 */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  /* 內距 */
+  padding: 20px; 
+}
+.img_box{
+  /* 樣式 */
+  display: block;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  /* 上下外距 & 置中 */
+  margin: 25px auto;
+  /* animation 改 */
+  transition: all 0.2s ease-in;
+  /*border: 8px solid #e6e6e6;*/
+  box-shadow: 0px 0px 0px 8px rgba(0, 0, 0, 0.1);
+}
+/* animation 改 */
+.img_box:hover{
+  box-shadow: 0px 0px 0px 12px rgba(0, 0, 0, 0.15);
+
+}
+.img_box img{
+  width: 100%;
+  border-radius: 50%;
+}
+/* 學習使用偽元素 */
+.img_box:after{
+  /* 樣式 */
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 4px solid #fff;
+  background-color: #ff1443;
+  border-radius: 50%;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  /* 定位 */
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+h1{
+  text-align: center;
+  font-size: 24px;
+  color: #FF5722;
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+h2{
+  text-align: center;
+  font-size: 16px;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+.infoBox{
+  padding: 20px 20px;
+}
+.infoBox p{
+  text-align: center;
+  font-size: 14px;
+  line-height: 22px;
+  color: #333;
+}
+.linksGroup li{
+  float: left;
+  width: 25%;
+}
+.linksGroup li a{
+  /* 改變a連結屬性 */
+  display: block;
+  text-align: center;
+  padding: 10px;
+  color: #ff1443;
+}
+
+/* animation 加一個假的背景 */
+/* 原理：利用偽元素的方法，建立一個在 wrapper 框內的 */
+.wrapper{
+  overflow: hidden;
+}
+.wrapper:before{
+  content: "";
+  width: 100%;
+  height: 1000px;
+  background-color: #bcdee7;
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 0%;
+  animation: bgCover 1s 0.9s ease-in backwards;
+}
+@keyframes bgCover{
+  0%{
+    bottom: -50px;
+    border-radius: 50%;
+    width: 0px;
+    height: 0px;
+  }
+  100%{
+    bottom: -200px;
+    border-radius: 50%;
+    width: 2500px;
+    height: 2500px;
+  }
+}
+/* 球變成卡片框框、彈跳的動畫 */
+.cardContainer{
+  top: 50%;
+  animation: ballIn 0.3s linear, moveDown 0.5s 0.3s linear, moveUp 0.5s 0.8s linear, turnToCard 0.5s 1.8s backwards;
+}
+/* 球微微向下 */
+@keyframes ballIn{
+  0%{
+    top: 50%;
+  }
+  100%{
+    top: 55%;
+  }
+}
+/* 向下移動 */
+@keyframes moveDown{
+  0% {
+    top: 55%;
+  }
+  50%{
+    top: 40%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+/* 向上移動 */
+@keyframes moveUp{
+  0% {
+    background: #ff1443;
+    top: 100%;
+  }
+  50% {
+    top: 40%;
+  }
+  100% {
+    top: 50%;
+    background: #fff;
+  }
+}
+/* 球變成卡片 */
+@keyframes turnToCard{
+  0% {
+    background-color: #ff1443;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+  }
+  50% {
+    border-radius: 4px;
+  }
+  100% {
+    width: 280px;
+    height: 440px;
+    background: #FFFFFF;
+    border-radius: 4px;
+  }
+}
+/* 卡片訊息淡入 */
+.cardContainer *{
+  animation: floatIn 0.8s 2.3s ease-in backwards;
+}
+@keyframes floatIn{
+  0%{
+    opacity: 0;
+    top: 20px;
+  }
+  100%{
+    opacity: 1;
+    top: 0;
+  }
+}
